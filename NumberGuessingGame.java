@@ -1,24 +1,33 @@
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class NumberGuessingGame {
-
     public static void main(String[] args) {
-        // initiate random
         Random random = new Random();
-        // the numbers to guess
         int numberToGuess = random.nextInt(100) + 1;
-        // intitate scanner
         Scanner scanner = new Scanner(System.in);
-        // current attempts counts
         int attempts = 0;
-        // wining state
         boolean hasWon = false;
 
         while (attempts < 5) {
-            System.out.println("Guess the number (1 - 100): ");
+            System.out.print("Guess the number (1-100): ");
+            int guess = scanner.nextInt();
+            attempts++;
 
+            if (guess == numberToGuess) {
+                hasWon = true;
+                break;
+            } else if (guess < numberToGuess) {
+                System.out.println("Too low!");
+            } else {
+                System.out.println("Too high!");
+            }
+        }
+
+        if (hasWon) {
+            System.out.println("Congratulations! You guessed the number in " + attempts + " attempts.");
+        } else {
+            System.out.println("You lost! The number was " + numberToGuess);
         }
     }
-
 }
